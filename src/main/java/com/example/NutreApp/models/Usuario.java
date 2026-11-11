@@ -6,7 +6,10 @@ import com.example.NutreApp.models.helpers.Departamento;
 import com.example.NutreApp.models.helpers.Rol;
 
 import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -26,11 +29,14 @@ private String nombre;
 @Column(name = "correo", nullable = false, unique = true, length = 80)
 private String correo;
 
+@Enumerated (EnumType.STRING)
 @Column(name = "rol", nullable = false, unique = false)
 private Rol rol;
 
-
+@Column (name="departamento", nullable = false, unique = false)
 private Departamento departamento;
+
+@Column (name ="contrasena_hash", nullable=false, unique=false)
 private String contrasena_hash;
 
 
