@@ -4,6 +4,15 @@ import java.time.LocalDate;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
 @Table(name = "visualizaciones")
 public class Visualizacion {
@@ -18,7 +27,19 @@ public class Visualizacion {
     @Column(name = "completado", nullable = false, unique = false, length = 20)
     private Boolean completado;
 
-    
+
+    //creando una relacion
+    @ManyToOne 
+    @JoinColumn (name = "id")
+    @JsonBackReference (value = "usuario-visualizacion")
+    private Usuario usuario;
+
+    @ManyToOne 
+    @JoinColumn (name = "id")
+    @JsonBackReference (value = "video-visualizacion")
+    private Video video;
+
+
     public Visualizacion() {
     }
 

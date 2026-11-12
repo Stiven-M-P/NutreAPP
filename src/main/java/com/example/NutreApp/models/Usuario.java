@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import com.example.NutreApp.models.helpers.Departamento;
 import com.example.NutreApp.models.helpers.Rol;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.annotation.Generated;
 
@@ -13,6 +14,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -39,6 +41,13 @@ private Departamento departamento;
 
 @Column(name ="contrasena_hash", nullable=false, unique=false)
 private String contrasena_hash;
+
+
+
+//creando una relacion
+@OneToMany (mappedBy = "usuario")
+@JsonManagedReference (value = "usuario-visualizacion")
+private List<Visualizacion> visualizaciones;
 
 
 

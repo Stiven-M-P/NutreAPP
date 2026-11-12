@@ -1,6 +1,9 @@
 package com.example.NutreApp.models;
 
 import com.example.NutreApp.models.helpers.categoria;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "videos")
@@ -27,6 +30,13 @@ public class Video {
 
     @Column(name = "capacitacion_interna", nullable = true, unique = false)
     private categoria capacitacion_interna;
+
+
+
+    @OneToMany (mappedBy = "video")
+    @JsonManagedReference (value = "video-visualizacion")
+    private List<video> visualizaciones;
+
 
 
     public Video() {
