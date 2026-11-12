@@ -1,13 +1,21 @@
-package com.example.NutreApp.models
+package com.example.NutreApp.models;
  
 import java.time.LocalDate;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "visualizaciones")
 public class Visualizacion {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    @Column(name = "fecha_visualizacion", nullable = false, unique = false, length = 20)
     private LocalDate fecha_visualizacion;
+
+    @Column(name = "completado", nullable = false, unique = false, length = 20)
     private Boolean completado;
 
     

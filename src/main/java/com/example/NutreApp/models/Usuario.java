@@ -6,6 +6,7 @@ import com.example.NutreApp.models.helpers.Departamento;
 import com.example.NutreApp.models.helpers.Rol;
 
 import jakarta.annotation.Generated;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 
 
 @Entity 
-@Table  (name="usuarios")
+@Table(name="usuarios")
 public class Usuario {
 
 @Id 
@@ -33,10 +34,10 @@ private String correo;
 @Column(name = "rol", nullable = false, unique = false)
 private Rol rol;
 
-@Column (name="departamento", nullable = false, unique = false)
+@Column(name="departamento", nullable = false, unique = false)
 private Departamento departamento;
 
-@Column (name ="contrasena_hash", nullable=false, unique=false)
+@Column(name ="contrasena_hash", nullable=false, unique=false)
 private String contrasena_hash;
 
 
@@ -113,6 +114,10 @@ public void setRol(Rol rol) {
 public void setDepartamento(Departamento departamento) {
     this.departamento = departamento;
 }
+
+    public String getContrasena_hash() {
+        return contrasena_hash;
+    }
 
 
 
