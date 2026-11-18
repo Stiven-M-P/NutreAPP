@@ -42,4 +42,39 @@ public class VisualizacionServicio {
         return this.visualizacionRepositorio.findAll();
     }
 
+    //metodo para modificar
+
+    public Visualizacion modificar (UUID id, Visualizacion datos){
+          optional<Visualizacion> visualizacionBuscado = this.visualizacionRepositorio.findById(id);
+        if (visualizacionBuscado.isPresent()){
+              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        }else{
+
+            //1. PRECARGAR LA INFO QUE EXISTE ACTUALMENTE EN BD 
+            Visualizacion visualizacionEncontrada = visualizacionBuscado.get();
+
+            //2. espacio para volvr a guardar la visualizacion que se acaba de modificar
+            return this.visualizacionRepositorio.save(visualizacionEncontrada);
+        
+    }
+
+
+    //metodo para eliminar
+
+    public Boolean eliminar (UUID id){
+          optional<Visualizacion> visualizacionBuscado = this.visualizacionRepositorio.findById(id);
+        if (visualizacionBuscado.isPresent()){
+              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        }else{
+
+            //1. PRECARGAR LA INFO QUE EXISTE ACTUALMENTE EN BD 
+            Visualizacion visualizacionEncontrada = visualizacionBuscado.get();
+    
+            //2. espacio para eliminar la visualizacion
+            this.visualizacionRepositorio.delete(visualizacionEncontrada);
+
+            return true;
+
 }

@@ -11,10 +11,10 @@ import com.example.NutreApp.models.repositories.IUsuarioRepositorio;
 
 public class UsuarioServicio {
    
-    //metodo para eliminar
+    
     //metodo para buscar por departamento y rol
-    //metodo para por correo
-    //metodo para buesar por rol
+    //metodo para buscar por correo
+    //metodo para buscar por rol
     //metodo para verificar por correo
     
 
@@ -66,6 +66,25 @@ public class UsuarioServicio {
 
             //3. espacio para volvr a guardar el usuario que se acaba de modificar
             return this.repositorio.save(usuarioEncontrado);
+        
+    }
+
+    //metodo para eliminar
+
+    public Boolean eliminar (UUID id){
+          optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+        if (usuarioBuscado.isPresent()){
+              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        }else{
+
+            //1. PRECARGAR LA INFO QUE EXISTE ACTUALMENTE EN BD 
+            Usuario usuarioEncontrado = usuarioBuscado.get();
+    
+            //2. espacio para eliminar el usuario
+            this.repositorio.delete(usuarioEncontrado);
+
+            return true;
         
     }
 }

@@ -53,6 +53,38 @@ public class VideoServicio {
         return this.videoRepositorio.findAll();
     }
 
+    //metodo para modificar
+
+    public Video modificar (UUID id, Video datos){
+          optional<Video> videoBuscado = this.videoRepositorio.findById(id);
+        if (videoBuscado.isPresent()){
+              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        }else{
+
+            //1. PRECARGAR LA INFO QUE EXISTE ACTUALMENTE EN BD 
+            Video videoEncontrado = videoBuscado.get();
+
+            //2. espacio para volvr a guardar el video que se acaba de modificar
+            return this.videoRepositorio.save(videoEncontrado);
+        
+    }
+
+    //metodo para eliminar
+
+    public Boolean eliminar (UUID id){
+          optional<Video> videoBuscado = this.videoRepositorio.findById(id);
+        if (videoBuscado.isPresent()){
+              throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "id no encontrado");
+
+        }else{
+
+            //1. PRECARGAR LA INFO QUE EXISTE ACTUALMENTE EN BD 
+            Video videoEncontrado = videoBuscado.get();
     
+            //2. espacio para eliminar el video
+            this.videoRepositorio.delete(videoEncontrado);
+
+            return true;
 
 }
