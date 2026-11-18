@@ -1,9 +1,13 @@
 package com.example.NutreApp.services;
 
-public class UsuarioServicio {
+import java.util.UUID;
 
-    //matodo para guardar 
-    //metodo para buscar por id
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.NutreApp.models.Usuario;
+
+public class UsuarioServicio {
+   
     //metodo para buscar todos
     //metodo para modificar
     //metodo para eliminar
@@ -12,4 +16,28 @@ public class UsuarioServicio {
     //metodo para buesar por rol
     //metodo para verificar por correo
     
+
+
+ //metodo para guardar 
+    @Autowired 
+    private UsuarioRepositorio usuarioRepositorio;
+
+
+    public Usuario guardar (Usuario datos);{
+        return this.usuarioRepositorio.save(datos);
+    }
+
+ //metodo para buscar por id
+    public Usuario buscarPorId (UUID id);{
+
+        optional<Usuario> usuarioBuscado = this.repositorio.findById(id);
+        if (usuarioBuscado.isPresent()){
+            return usuarioBuscado.get();
+
+
+        }else{
+            return usuarioBuscado.get();
+        }
+        
+    }
 }
